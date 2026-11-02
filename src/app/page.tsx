@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import WeddingCountdown from "@/components/WeddingCountdown";
 import ScratchDateCard from "@/components/ScratchDateCard";
+import TraditionalInvitation from "@/components/TraditionalInvitation";
+import ScrollRosefall from "@/components/ScrollRosefall";
 import { weddingDetails } from "@/data/wedding";
 
 export default function WeddingInvitation() {
@@ -50,6 +52,7 @@ export default function WeddingInvitation() {
 
   return (
     <main className={`wedding-site${invitationOpening ? " wedding-site--revealing" : ""}`}>
+      <ScrollRosefall />
       {!invitationOpened && (
         <div className={`invitation-cover${invitationOpening ? " invitation-cover--opening" : ""}`}>
           <div className="invitation-cover__artwork">
@@ -149,6 +152,8 @@ export default function WeddingInvitation() {
 
       <div data-scroll-reveal><WeddingCountdown /></div>
 
+      <TraditionalInvitation />
+
       <section className="schedule section-pad" id="schedule" aria-labelledby="schedule-title" data-scroll-reveal>
         <div className="schedule__intro">
           <p className="eyebrow">CELEBRATE WITH US</p>
@@ -161,7 +166,7 @@ export default function WeddingInvitation() {
             <article className="schedule__item" key={item.title}>
               <span className="schedule__index" aria-hidden="true">0{index + 1}</span>
               <div className="schedule__event">
-                <span className="schedule__time">{item.time}</span>
+                <span className="schedule__time" lang={item.time === weddingDetails.dateNepali ? "ne" : undefined}>{item.time}</span>
                 <h3>{item.title}</h3>
                 <p lang="ne">{item.titleNepali}</p>
               </div>
@@ -226,6 +231,17 @@ export default function WeddingInvitation() {
           <span lang="ne">{weddingDetails.dateNepali}</span>
         </p>
       </section>
+
+      <footer className="footer">
+        <p className="eyebrow">UNTIL THEN, WITH LOVE</p>
+        <p className="footer__names">
+          {weddingDetails.bride.nameEnglish} <i>&amp;</i> {weddingDetails.groom.nameEnglish}
+        </p>
+        <p className="footer__date" lang="ne">
+          {weddingDetails.dateNepali} · {weddingDetails.venue.location}
+        </p>
+        <a className="footer__top" href="#home">BACK TO THE BEGINNING ↑</a>
+      </footer>
     </main>
   );
 }

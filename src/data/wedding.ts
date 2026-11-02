@@ -29,6 +29,22 @@ export const weddingDetails = {
     location: "पोखरा–१४, चाउथे",
     directionsQuery: "Kantipur Garden Party Palace, Pokhara, Nepal",
   },
+  traditionalInvitation: {
+    verse: [
+      "मंगलम भगवान विष्णुः",
+      "मंगलम गरुडध्वजः ।",
+      "मंगलम पुण्डरीकाक्षः",
+      "मंगलाय तनो हरिः ॥",
+    ],
+    brideRole: "कनिष्ठ सुपुत्री",
+    brideNameNepali: "सुश्री आश्मा तिमिल्सिना",
+    groomRole: "आयुष्मान सुपुत्र",
+    groomNameNepali: "श्री दिवस सापकोटा",
+    weddingTime: "दिउँसो १:०० बजे",
+    feastTime: "बिहान ९:०० बजे",
+    message:
+      "सुसम्पन्न हुने शुभविवाह कार्यक्रममा वर–वधूलाई आशीर्वाद तथा शुभकामना प्रदान गर्न यहाँको गरिमामय उपस्थितिका लागि हार्दिक निमन्त्रणा गर्दछौँ।",
+  },
   schedule: [
     {
       time: "9:00 AM",
@@ -41,7 +57,7 @@ export const weddingDetails = {
       titleNepali: "वरियात प्रस्थान",
     },
     {
-      time: "To be announced",
+      time: "२०८३ मंसिर ०९ गते, बुधबार",
       title: "Wedding ceremony",
       titleNepali: "विवाह समारोह",
     },
