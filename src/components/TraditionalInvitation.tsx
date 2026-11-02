@@ -81,17 +81,6 @@ export default function TraditionalInvitation() {
           <div className="traditional-invitation__edge-ornament traditional-invitation__edge-ornament--bottom" aria-hidden="true">❧　✦　❧</div>
         </div>
       </article>
-
-      <div className="traditional-invitation__actions">
-        <button
-          className="traditional-invitation__button traditional-invitation__button--print"
-          onClick={() => window.print()}
-          type="button"
-        >
-          <span lang="ne">प्रिन्ट गर्नुहोस्</span>
-          <span aria-hidden="true">⌑</span>
-        </button>
-      </div>
     </section>
   );
 }
