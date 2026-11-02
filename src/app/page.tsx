@@ -109,7 +109,7 @@ export default function WeddingInvitation() {
 
       <section className="hero" id="home" aria-labelledby="hero-title">
         <picture className="hero__image">
-          <source media="(max-width: 680px)" srcSet="/images/ai.jpeg" />
+          <source media="(max-width: 680px)" srcSet="/images/mobilesize.png" />
           <img
             alt="Aashma Timilsina and Diwas Sapkota in their wedding attire"
             decoding="async"
