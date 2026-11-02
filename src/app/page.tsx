@@ -183,7 +183,7 @@ export default function WeddingInvitation() {
           <p className="eyebrow">JOIN US IN POKHARA</p>
           <h2 id="venue-title">A place to<br /><em>gather.</em></h2>
           <span className="venue__ornament" aria-hidden="true">✦</span>
-          <p className="venue__english-name">Kantipur Garden Party Palace</p>
+          <p className="venue__english-name">Kantipur Garden Batika</p>
           <p className="venue__name" lang="ne">{weddingDetails.venue.name}</p>
           <p className="venue__address" lang="ne">{weddingDetails.venue.location}</p>
           <a
@@ -197,10 +197,10 @@ export default function WeddingInvitation() {
         </div>
         <div className="venue__map">
           <iframe
-            title={`Map to ${weddingDetails.venue.name}`}
+            title="Map to Kantipur Garden Batika, Pokhara"
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps?q=${encodeURIComponent("Kantipur Garden Party Palace, Pokhara, Nepal")}&output=embed`}
+            referrerPolicy="strict-origin-when-cross-origin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7032.8974290803535!2d84.00949668138799!3d28.193676676832272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39959500463d5c77%3A0x3dd158c5f5f6c10b!2sKantipur%20Garden%20Batika!5e0!3m2!1sen!2snp!4v1793615370003!5m2!1sen!2snp"
           />
         </div>
         <div className="dress-code">

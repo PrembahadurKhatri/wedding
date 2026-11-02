@@ -27,7 +27,7 @@ export const weddingDetails = {
   venue: {
     name: "कान्तिपुर गार्डेन पार्टी प्यालेस",
     location: "पोखरा–१४, चाउथे",
-    directionsQuery: "Kantipur Garden Party Palace, Pokhara, Nepal",
+    directionsQuery: "Kantipur Garden Batika, Pokhara, Nepal",
   },
   traditionalInvitation: {
     verse: [
