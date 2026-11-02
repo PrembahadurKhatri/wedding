@@ -61,10 +61,5 @@ export const weddingDetails = {
       title: "Wedding ceremony",
       titleNepali: "विवाह समारोह",
     },
-    {
-      time: "To be announced",
-      title: "Reception",
-      titleNepali: "स्वागत समारोह",
-    },
   ],
 } as const;
