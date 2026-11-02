@@ -226,10 +226,6 @@ export default function WeddingInvitation() {
             </div>
           </article>
         </div>
-        <p className="venue__footer">
-          {weddingDetails.bride.nameEnglish} <i>&amp;</i> {weddingDetails.groom.nameEnglish}
-          <span lang="ne">{weddingDetails.dateNepali}</span>
-        </p>
       </section>
 
       <footer className="footer">
