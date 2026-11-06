@@ -1,5 +1,3 @@
-"use client";
-
 import { weddingDetails } from "@/data/wedding";
 
 export default function TraditionalInvitation() {
@@ -10,22 +8,15 @@ export default function TraditionalInvitation() {
       aria-labelledby="traditional-invitation-title"
       data-scroll-reveal
     >
-      <div className="traditional-invitation__intro">
-        <p className="eyebrow">A TRADITIONAL INVITATION</p>
-        <p className="traditional-invitation__ganesh" lang="ne">॥ श्री गणेशाय नमः ॥</p>
-        <div className="traditional-invitation__verse" lang="ne">
-          {weddingDetails.traditionalInvitation.verse.map((line) => <p key={line}>{line}</p>)}
-        </div>
-      </div>
-
       <article className="traditional-invitation__card" lang="ne">
         <div className="traditional-invitation__card-inner">
-          <div className="traditional-invitation__edge-ornament traditional-invitation__edge-ornament--top" aria-hidden="true">❧　✦　❧</div>
-          <div className="traditional-invitation__title">
-            <span aria-hidden="true">❧</span>
+          <header className="traditional-invitation__header">
             <h2 id="traditional-invitation-title">सादर निमन्त्रणा</h2>
-            <span aria-hidden="true">❧</span>
-          </div>
+            <p className="traditional-invitation__ganesh">॥ श्री गणेशाय नमः ॥</p>
+            <div className="traditional-invitation__verse">
+              {weddingDetails.traditionalInvitation.verse.map((line) => <p key={line}>{line}</p>)}
+            </div>
+          </header>
 
           <div className="traditional-invitation__families">
             <section className="traditional-invitation__family" aria-labelledby="bride-family-title">
@@ -78,7 +69,6 @@ export default function TraditionalInvitation() {
           </div>
 
           <p className="traditional-invitation__closing">{weddingDetails.traditionalInvitation.message}</p>
-          <div className="traditional-invitation__edge-ornament traditional-invitation__edge-ornament--bottom" aria-hidden="true">❧　✦　❧</div>
         </div>
       </article>
     </section>

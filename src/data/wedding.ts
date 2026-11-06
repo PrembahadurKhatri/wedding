@@ -29,6 +29,18 @@ export const weddingDetails = {
     location: "पोखरा–१४, चाउथे",
     directionsQuery: "Kantipur Garden Batika, Pokhara, Nepal",
   },
+  // Google Calendar "Save the Date" event. Times are local to timeZone.
+  // TODO(review): endTime is an assumption — no end time has been announced.
+  calendar: {
+    title: "Wedding of Aashma Timilsina & Diwas Sapkota",
+    date: "2026-11-25",
+    startTime: "09:00",
+    endTime: "18:00",
+    timeZone: "Asia/Kathmandu",
+    location: "Kantipur Garden Batika (कान्तिपुर गार्डेन पार्टी प्यालेस), Chauthe, Pokhara-14, Nepal",
+    description:
+      "Join us to celebrate the wedding of Aashma Timilsina and Diwas Sapkota. Guest arrival & pre-wedding feast from 9:00 AM; wedding procession at 1:00 PM.",
+  },
   traditionalInvitation: {
     verse: [
       "मंगलम भगवान विष्णुः",

@@ -48,7 +48,11 @@ export default function WeddingCountdown() {
         <h2 className="countdown__title" id="countdown-title">
           COUNTDOWN TO THE WEDDING
         </h2>
-        <span className="countdown__ornament" aria-hidden="true">✦</span>
+        <span className="countdown__ornament" aria-hidden="true">
+          <i />
+          <svg viewBox="0 0 24 22"><path d="M12 21C10 19.3 1 13.3 1 6.9 1 3.6 3.6 1 6.8 1c2.1 0 4 1.1 5.2 2.9C13.2 2.1 15.1 1 17.2 1 20.4 1 23 3.6 23 6.9 23 13.3 14 19.3 12 21Z" /></svg>
+          <i />
+        </span>
 
         {isComplete ? (
           <p className="countdown__complete" role="status">
