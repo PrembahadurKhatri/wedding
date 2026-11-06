@@ -707,7 +707,7 @@ body { background: #fff; }
 body:has(.invitation-cover) { overflow: hidden; }
 .invitation-cover { position: fixed; z-index: 20; inset: 0; display: grid; place-items: center; overflow: hidden; background: #f4efe6; transition: opacity var(--cover-fade) ease; }
 .invitation-cover--revealing { opacity: 0; pointer-events: none; }
-.invitation-cover__frame { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.invitation-cover__frame { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); container-type: size; }
 .invitation-cover__poster, .invitation-cover__video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
 .invitation-cover__button { position: absolute; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; transform: translate(-50%, -50%); -webkit-tap-highlight-color: transparent; }
 .invitation-cover__button:focus-visible { outline: 3px solid #f6d78f; outline-offset: 4px; }
@@ -731,4 +731,18 @@ body:has(.invitation-cover) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .invitation-cover__pulse { animation: none; }
   .invitation-cover { transition: none; }
+}
+
+/* Crisp "TAP TO OPEN" drawn over the clip's blurry printed label. Positions/colours are measured from
+   the clip's first frame; sizes use container units so it scales with the envelope. */
+.invitation-cover__label { position: absolute; display: grid; place-items: center; pointer-events: none; --feather: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%), linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%); -webkit-mask-image: var(--feather); -webkit-mask-composite: source-in; mask-image: var(--feather); mask-composite: intersect; transition: opacity .55s ease .1s; }
+.invitation-cover__label span { color: #7d5f36; font-family: var(--serif); font-weight: 500; line-height: 1; letter-spacing: .07em; text-transform: uppercase; text-shadow: 0 .05em 0 #fbf4e8cc, 0 -.03em .02em #4a32161f; white-space: nowrap; }
+.invitation-cover--playing .invitation-cover__label, .invitation-cover--revealing .invitation-cover__label { opacity: 0; }
+@media (orientation: portrait) {
+  .invitation-cover__label { top: 29.4%; left: 16.5%; width: 67%; height: 5.6%; background: #e1d2c1; }
+  .invitation-cover__label span { font-size: 5.7cqw; }
+}
+@media (orientation: landscape) {
+  .invitation-cover__label { top: 29.8%; left: 38%; width: 24%; height: 6.6%; background: #dccfc1; }
+  .invitation-cover__label span { font-size: 2.15cqw; font-weight: 600; }
 }

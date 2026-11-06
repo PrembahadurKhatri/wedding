@@ -107,6 +107,11 @@ export default function InvitationCover() {
           preload="auto"
           ref={videoRef}
         />
+        {/* The clip's own "TAP TO OPEN" is only a few pixels tall at source and looks blurry, so a crisp
+            label is drawn over it (on a paper-coloured patch) and fades out as the sparks begin. */}
+        <span className="invitation-cover__label" aria-hidden="true">
+          <span>Tap to Open</span>
+        </span>
         <button
           aria-label={phase === "closed" ? "Open the wedding invitation" : "Opening the wedding invitation"}
           className="invitation-cover__button"
