@@ -14,8 +14,8 @@ const clips: Record<"portrait" | "landscape", Clip> = {
   landscape: { src: "/open-desktop.mp4", revealAt: 2.35, rate: 1.3 },
 };
 const FADE_MS = 450;
-// If the clip can't start promptly (slow network), open anyway rather than make the guest wait.
-const START_TIMEOUT_MS = 1200;
+// If the clip is still downloading when the guest taps, wait this long for it before opening without it.
+const START_TIMEOUT_MS = 3000;
 
 export default function InvitationCover() {
   const coverRef = useRef<HTMLDivElement>(null);
