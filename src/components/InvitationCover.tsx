@@ -1,94 +1,122 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
-const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Opening envelope video. Portrait clip on phones / portrait tablets, landscape (cropped) clip on laptops.
+// Mobile plays its whole clip (seal, sparks and opening) at normal speed and reveals when it ends.
+// Desktop's clip ends on ~1.4 s of plain white, so it reveals at `revealAt` (the start of the flash).
+const PORTRAIT_QUERY = "(orientation: portrait)";
+// `rate` > 1 plays the clip a little faster than recorded.
+type Clip = { src: string; revealAt: number | null; rate: number };
+const clips: Record<"portrait" | "landscape", Clip> = {
+  portrait: { src: "/open-mobile.mp4", revealAt: null, rate: 1 },
+  landscape: { src: "/open-desktop.mp4", revealAt: 2.35, rate: 1.3 },
+};
+const FADE_MS = 450;
+// If the clip can't start promptly (slow network), open anyway rather than make the guest wait.
+const START_TIMEOUT_MS = 1200;
 
 export default function InvitationCover() {
   const coverRef = useRef<HTMLDivElement>(null);
-  const [opened, setOpened] = useState(false);
-  const [opening, setOpening] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const clipRef = useRef<Clip>(clips.portrait);
+  const revealedRef = useRef(false);
+  const [phase, setPhase] = useState<"closed" | "playing" | "revealing" | "open">("closed");
 
-  function openInvitation() {
-    if (opening) return;
-    setOpening(true);
+  // Pick the clip for this screen and start buffering it straight away, so the tap plays instantly.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const clip = window.matchMedia(PORTRAIT_QUERY).matches ? clips.portrait : clips.landscape;
+    clipRef.current = clip;
+    video.src = clip.src;
+    video.load();
+  }, []);
+
+  function reveal() {
+    if (revealedRef.current) return;
+    revealedRef.current = true;
     coverRef.current?.closest(".wedding-site")?.classList.add("wedding-site--revealing");
     window.dispatchEvent(new Event("invitation:open"));
-
-    if (prefersReducedMotion()) {
-      setOpened(true);
-      return;
-    }
-    // Fallback in case animationend never fires (e.g. a background tab).
-    window.setTimeout(() => setOpened(true), 2600);
+    setPhase("revealing");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(() => setPhase("open"), reduceMotion ? 0 : FADE_MS);
   }
 
-  if (opened) return null;
+  function openInvitation() {
+    if (phase !== "closed") return;
+    const video = videoRef.current;
+    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      reveal();
+      return;
+    }
+    setPhase("playing");
+    const { revealAt, rate } = clipRef.current;
+    video.playbackRate = rate;
+    const fallback = window.setTimeout(() => {
+      if (video.currentTime < 0.05) reveal();
+    }, START_TIMEOUT_MS);
+    video.addEventListener(
+      "playing",
+      () => {
+        window.clearTimeout(fallback);
+        // Precise timer for the hand-off (timeupdate only fires every ~250 ms). No revealAt → wait for "ended".
+        if (revealAt !== null) window.setTimeout(reveal, Math.max(0, ((revealAt - video.currentTime) / rate) * 1000));
+      },
+      { once: true },
+    );
+    video.play().catch(() => {
+      window.clearTimeout(fallback);
+      reveal();
+    });
+  }
+
+  if (phase === "open") return null;
 
   return (
-    <div className={`invitation-cover${opening ? " invitation-cover--opening" : ""}`} ref={coverRef}>
-      <div className="invitation-cover__artwork">
-        <picture className="invitation-cover__artwork-picture">
-          <source media="(min-width: 681px)" srcSet="/images/cover-desktop-1365.avif" type="image/avif" />
-          <source media="(min-width: 681px)" srcSet="/images/cover-desktop-1365.webp" type="image/webp" />
-          <source
-            sizes="100vw"
-            srcSet="/images/cover-mobile-540.avif 540w, /images/cover-mobile-768.avif 768w"
-            type="image/avif"
-          />
-          <source
-            sizes="100vw"
-            srcSet="/images/cover-mobile-540.webp 540w, /images/cover-mobile-768.webp 768w"
-            type="image/webp"
-          />
+    <div
+      className={`invitation-cover invitation-cover--${phase}`}
+      ref={coverRef}
+      style={{ "--cover-fade": `${FADE_MS}ms` } as CSSProperties}
+    >
+      <div className="invitation-cover__frame">
+        <picture>
+          <source media={PORTRAIT_QUERY} srcSet="/images/open-mobile-poster.webp" />
           <img
             alt=""
-            className="invitation-cover__artwork-image"
+            className="invitation-cover__poster"
             decoding="async"
             fetchPriority="high"
-            height={1365}
-            src="/images/cover-mobile-768.webp"
-            width={768}
+            src="/images/open-desktop-poster.webp"
           />
         </picture>
+        <video
+          className="invitation-cover__video"
+          disablePictureInPicture
+          muted
+          onEnded={reveal}
+          onError={() => {
+            if (phase === "playing") reveal();
+          }}
+          onTimeUpdate={(event) => {
+            const { revealAt } = clipRef.current;
+            if (revealAt !== null && event.currentTarget.currentTime >= revealAt) reveal();
+          }}
+          playsInline
+          preload="auto"
+          ref={videoRef}
+        />
         <button
-          aria-label={opening ? "Opening wedding invitation" : "Tap to open the wedding invitation"}
+          aria-label={phase === "closed" ? "Open the wedding invitation" : "Opening the wedding invitation"}
           className="invitation-cover__button"
-          type="button"
+          disabled={phase !== "closed"}
           onClick={openInvitation}
-          disabled={opening}
+          type="button"
         >
-          <span className="visually-hidden">Tap to open the wedding invitation</span>
+          <span className="invitation-cover__pulse" aria-hidden="true" />
         </button>
       </div>
-      <div className="invitation-cover__curtain invitation-cover__curtain--left" aria-hidden="true" />
-      <div
-        className="invitation-cover__curtain invitation-cover__curtain--right"
-        onAnimationEnd={(event) => {
-          if (event.animationName === "wedding-curtain-right") {
-            window.setTimeout(() => setOpened(true), 200);
-          }
-        }}
-        aria-hidden="true"
-      />
-      <div className="invitation-cover__petals" aria-hidden="true">
-        <i /><i /><i /><i /><i />
-      </div>
-      <svg aria-hidden="true" className="invitation-cover__rose" viewBox="0 0 80 96">
-        <defs>
-          <linearGradient id="rose-petal" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stopColor="#f4b39b" />
-            <stop offset=".52" stopColor="#b82e36" />
-            <stop offset="1" stopColor="#661a28" />
-          </linearGradient>
-        </defs>
-        <path d="M40 51c-7 11-9 24-7 38h14c2-14 0-27-7-38Z" fill="#426044" />
-        <path d="M34 72c-9-12-17-12-23-8 7 11 14 15 24 13M46 66c8-13 17-14 23-10-6 12-13 17-23 16" fill="#55734e" />
-        <path d="M40 7c-5 8-18 10-19 23-1 13 9 23 19 24 11-1 20-11 19-24C58 17 45 15 40 7Z" fill="url(#rose-petal)" />
-        <path d="M40 13c-8 6-12 13-9 20 2 6 7 10 9 11 3-3 8-7 10-13 2-7-2-13-10-18Z" fill="#d84b4c" />
-        <path d="M40 19c-4 4-6 8-4 12 1 3 3 5 4 6 2-2 4-4 5-7 1-4-1-8-5-11Z" fill="#f3a286" />
-        <path d="M24 25c-8 10-1 23 9 27M56 25c8 10 1 23-9 27" fill="none" stroke="#f4b39b" strokeWidth="2" />
-      </svg>
     </div>
   );
 }

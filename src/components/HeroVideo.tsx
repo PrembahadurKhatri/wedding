@@ -55,7 +55,7 @@ export default function HeroVideo() {
     };
     const onPlaying = () => video.classList.add("hero__video--playing");
     // When the guest opens the cover, start the clip from the beginning so the text and swans line up.
-    // The curtains cover the page for ~1.1 s after the tap, so wait until it is visible.
+    // Fired by the cover the moment the invitation fades in, so the text and swans start together.
     let openTimer: number | undefined;
     const onOpen = () => {
       openTimer = window.setTimeout(() => {
@@ -64,7 +64,7 @@ export default function HeroVideo() {
         video.currentTime = 0;
         lastTime = 0;
         video.play().catch(() => {});
-      }, reduceMotion ? 0 : 1100);
+      }, 0);
     };
 
     window.addEventListener("invitation:open", onOpen);
