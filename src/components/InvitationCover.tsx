@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
 // Opening envelope video. Portrait clip on phones / portrait tablets, landscape (cropped) clip on laptops.
-// Mobile plays its whole clip (seal, sparks and opening) at normal speed and reveals when it ends.
-// Desktop's clip ends on ~1.4 s of plain white, so it reveals at `revealAt` (the start of the flash).
+// Both clips end on a white flash, so each reveals at `revealAt` (the moment the flash fills the frame).
+// Mobile uses the 16:9 envelope clip (from dd.mp4, black bars cropped off) centred on a dark backdrop.
 const PORTRAIT_QUERY = "(orientation: portrait)";
 // `rate` > 1 plays the clip a little faster than recorded.
 type Clip = { src: string; revealAt: number | null; rate: number };
 const clips: Record<"portrait" | "landscape", Clip> = {
-  portrait: { src: "/open-mobile.mp4", revealAt: null, rate: 1 },
+  portrait: { src: "/open-mobile.mp4", revealAt: 3.2, rate: 1.1 },
   landscape: { src: "/open-desktop.mp4", revealAt: 2.35, rate: 1.3 },
 };
 const FADE_MS = 450;
