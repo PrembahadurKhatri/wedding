@@ -52,7 +52,6 @@ export const weddingDetails = {
     brideNameNepali: "सुश्री आश्मा तिमिल्सिना",
     groomRole: "आयुष्मान सुपुत्र",
     groomNameNepali: "श्री दिवश सापकोटा",
-    groomRecipient: "प्रथि सुश्री अनिता तिमिल्सिना",
     weddingTime: "दिउँसो १:०० बजे",
     feastTime: "बिहान ९:०० बजे",
     message:

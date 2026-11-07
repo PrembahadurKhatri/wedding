@@ -45,7 +45,6 @@ export default function TraditionalInvitation() {
               <p>बुबा: {weddingDetails.groom.father}</p>
               <p>आमा: {weddingDetails.groom.mother}</p>
               <p className="traditional-invitation__address">निवास: {weddingDetails.groom.address}</p>
-              <p className="traditional-invitation__recipient">{weddingDetails.traditionalInvitation.groomRecipient}</p>
             </section>
           </div>
 

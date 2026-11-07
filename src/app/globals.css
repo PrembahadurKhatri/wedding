@@ -445,7 +445,6 @@ a { color: inherit; text-decoration: none; }
 .traditional-invitation__card .traditional-invitation__family h3 { margin: 0 0 6px; font-size: clamp(15px, 2.1vw, 17px); }
 .traditional-invitation__card .traditional-invitation__family > p:not(.traditional-invitation__role):not(.traditional-invitation__relation) { margin: 2px 0; font-size: 12px; line-height: 1.75; }
 .traditional-invitation__card .traditional-invitation__family .traditional-invitation__address { margin-top: 6px !important; }
-.traditional-invitation__card .traditional-invitation__family .traditional-invitation__recipient { margin: 10px 0 0 !important; color: #71343a; font: 500 13px/1.75 var(--nepali-serif) !important; }
 .traditional-invitation__card .traditional-invitation__joining-mark { gap: 7px; }
 .traditional-invitation__card .traditional-invitation__joining-mark i { min-height: 22px; }
 .traditional-invitation__card .traditional-invitation__event { margin-top: calc(5% + 24px); padding-top: 0; }
