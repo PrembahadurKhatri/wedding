@@ -718,11 +718,11 @@ body:has(.invitation-cover) { overflow: hidden; }
 .invitation-cover--playing .invitation-cover__pulse, .invitation-cover--revealing .invitation-cover__pulse { display: none; }
 @keyframes seal-pulse { 0% { opacity: .9; transform: scale(.92); } 70% { opacity: 0; transform: scale(1.22); } 100% { opacity: 0; transform: scale(1.22); } }
 
-/* Phones / portrait: 16:9 envelope clip (1280×720) full width, centred on its own dark backdrop. */
+/* Phones / portrait: the full original clip (480×854, envelope in the middle), never cropped: it fits the screen on a black backdrop. */
 @media (orientation: portrait) {
   .invitation-cover { background: #030202; }
-  .invitation-cover__frame { width: 100vw; aspect-ratio: 16 / 9; }
-  .invitation-cover__button { top: 51.1%; left: 50%; width: 28%; }
+  .invitation-cover__frame { width: min(100vw, 100dvh * 480 / 854); aspect-ratio: 480 / 854; }
+  .invitation-cover__button { top: 50.3%; left: 50%; width: 27%; }
 }
 /* Laptops / landscape: cropped envelope clip (480×300) centred on its own dark backdrop. */
 @media (orientation: landscape) {
@@ -741,8 +741,8 @@ body:has(.invitation-cover) { overflow: hidden; }
 .invitation-cover__label span { color: #7d5f36; font-family: var(--serif); font-weight: 500; line-height: 1; letter-spacing: .07em; text-transform: uppercase; text-shadow: 0 .05em 0 #fbf4e8cc, 0 -.03em .02em #4a32161f; white-space: nowrap; }
 .invitation-cover--playing .invitation-cover__label, .invitation-cover--revealing .invitation-cover__label { opacity: 0; }
 @media (orientation: portrait) {
-  .invitation-cover__label { top: 8%; left: 32.5%; width: 35%; height: 9.4%; background: #e3d8c7; }
-  .invitation-cover__label span { font-size: 3.7cqw; font-weight: 600; }
+  .invitation-cover__label { top: 37.1%; left: 33.1%; width: 33.8%; height: 2.9%; background: #e3d8c7; }
+  .invitation-cover__label span { font-size: 3.6cqw; font-weight: 600; }
 }
 @media (orientation: landscape) {
   .invitation-cover__label { top: 29.8%; left: 38%; width: 24%; height: 6.6%; background: #dccfc1; }

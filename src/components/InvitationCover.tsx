@@ -5,7 +5,7 @@ import type { CSSProperties } from "react";
 
 // Opening envelope video. Portrait clip on phones / portrait tablets, landscape (cropped) clip on laptops.
 // Both clips end on a white flash, so each reveals at `revealAt` (the moment the flash fills the frame).
-// Mobile uses the 16:9 envelope clip (from dd.mp4, black bars cropped off) centred on a dark backdrop.
+// Mobile uses dd.mp4 unchanged (480×854), shown whole and fitted to the screen.
 const PORTRAIT_QUERY = "(orientation: portrait)";
 // `rate` > 1 plays the clip a little faster than recorded.
 type Clip = { src: string; revealAt: number | null; rate: number };
