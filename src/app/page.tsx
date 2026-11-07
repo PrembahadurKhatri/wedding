@@ -71,7 +71,6 @@ export default function WeddingInvitation() {
           {weddingDetails.schedule.map((item, index) => (
             <article className="schedule__item" key={item.title}>
               <span className="schedule__icon" aria-hidden="true">{scheduleIcons[index]}</span>
-              <span className="schedule__index" aria-hidden="true">0{index + 1}</span>
               <div className="schedule__event">
                 <span className="schedule__time" lang={item.time === weddingDetails.dateNepali ? "ne" : undefined}>{item.time}</span>
                 <h3>{item.title}</h3>

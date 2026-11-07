@@ -8,7 +8,7 @@ export const weddingDetails = {
     address: "पोखरा–१०, शिव मार्ग",
   },
   groom: {
-    nameEnglish: "Diwas Sapkota",
+    nameEnglish: "Diwash Sapkota",
     nameNepali: "दिवास सापकोटा",
     father: "श्रीमान् लक्ष्मण सापकोटा",
     mother: "श्रीमती निर्मला सापकोटा",
@@ -25,21 +25,21 @@ export const weddingDetails = {
     targetDescription: "The first confirmed event · Pre-wedding feast",
   },
   venue: {
-    name: "कान्तिपुर गार्डेन पार्टी प्यालेस",
+    name: "कान्तिपुर गार्डेन वाटिका",
     location: "पोखरा–१४, चाउथे",
     directionsQuery: "Kantipur Garden Batika, Pokhara, Nepal",
   },
   // Google Calendar "Save the Date" event. Times are local to timeZone.
   // TODO(review): endTime is an assumption — no end time has been announced.
   calendar: {
-    title: "Wedding of Aashma Timilsina & Diwas Sapkota",
+    title: "Wedding of Aashma Timilsina & Diwash Sapkota",
     date: "2026-11-25",
     startTime: "09:00",
     endTime: "18:00",
     timeZone: "Asia/Kathmandu",
-    location: "Kantipur Garden Batika (कान्तिपुर गार्डेन पार्टी प्यालेस), Chauthe, Pokhara-14, Nepal",
+    location: "Kantipur Garden Batika (कान्तिपुर गार्डेन वाटिका), Chauthe, Pokhara-14, Nepal",
     description:
-      "Join us to celebrate the wedding of Aashma Timilsina and Diwas Sapkota. Guest arrival & pre-wedding feast from 9:00 AM; wedding procession at 1:00 PM.",
+      "Join us to celebrate the wedding of Aashma Timilsina and Diwash Sapkota. Guest arrival & pre-wedding feast from 9:00 AM; wedding procession at 1:00 PM.",
   },
   traditionalInvitation: {
     verse: [
@@ -51,7 +51,8 @@ export const weddingDetails = {
     brideRole: "कनिष्ठ सुपुत्री",
     brideNameNepali: "सुश्री आश्मा तिमिल्सिना",
     groomRole: "आयुष्मान सुपुत्र",
-    groomNameNepali: "श्री दिवस सापकोटा",
+    groomNameNepali: "श्री दिवश सापकोटा",
+    groomRecipient: "प्रथि सुश्री अनिता तिमिल्सिना",
     weddingTime: "दिउँसो १:०० बजे",
     feastTime: "बिहान ९:०० बजे",
     message:

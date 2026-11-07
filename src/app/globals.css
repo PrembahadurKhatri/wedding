@@ -102,7 +102,7 @@ a { color: inherit; text-decoration: none; }
 .footer { min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 65px 24px 35px; background: #342a26; color: var(--white); text-align: center; }
 .footer > .eyebrow { color: #d3b392; }
 .footer__names { margin: 17px 0 10px; font: 400 clamp(30px, 5vw, 45px) var(--serif); letter-spacing: -.04em; }
-.footer__date { margin: 0; color: #d3c4b8; font-size: 8px; letter-spacing: .19em; }
+.footer__date { margin: 0; color: #d3c4b8; font-size: clamp(14px, 1.6vw, 18px); line-height: 1.6; letter-spacing: .08em; }
 .footer__top { margin-top: 47px; color: #d3c4b8; font-size: 7px; letter-spacing: .18em; transition: color .2s; }
 .footer__top:hover { color: #e7c7a6; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(17px); } to { opacity: 1; transform: translateY(0); } }
@@ -183,13 +183,13 @@ a { color: inherit; text-decoration: none; }
 .scratch-section__intro .eyebrow { color: #947a5e; }
 .scratch-section h2 { margin-top: 13px; }
 .scratch-section__intro > p:last-child { margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.8; }
-.scratch-card { width: min(370px, 100%); aspect-ratio: 320 / 290; position: relative; margin: 42px auto 0; isolation: isolate; }
+.scratch-card { width: min(410px, 100%); aspect-ratio: 320 / 290; position: relative; margin: 42px auto 0; isolation: isolate; }
 .scratch-card__heart { width: 100%; height: 100%; position: absolute; inset: 0; overflow: visible; filter: drop-shadow(0 13px 17px #40221c21); }
-.scratch-card__message { position: absolute; inset: 25% 14% 20%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: #fff6e8; pointer-events: none; }
-.scratch-card__label { color: #e8c68b; font-size: 8px; font-weight: 600; letter-spacing: .24em; }
-.scratch-card__message strong { margin-top: 4px; font: 500 15px/1.8 var(--nepali-serif); }
-.scratch-card__message > span:not(.scratch-card__label) { font-size: 10px; line-height: 1.6; }
-.scratch-card__message > span[lang="ne"] { font: 400 11px/1.75 var(--nepali-sans); }
+.scratch-card__message { position: absolute; inset: 24% 12% 18%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-align: center; color: #fff6e8; pointer-events: none; }
+.scratch-card__label { color: #e8c68b; font-size: 11px; font-weight: 600; letter-spacing: .24em; }
+.scratch-card__message strong { margin-top: 4px; font: 500 20px/1.6 var(--nepali-serif); }
+.scratch-card__message > span:not(.scratch-card__label) { font-size: 14px; line-height: 1.5; }
+.scratch-card__message > span[lang="ne"] { font: 400 15px/1.6 var(--nepali-sans); }
 .scratch-card__foil { width: 100%; height: 100%; position: absolute; inset: 0; display: block; cursor: grab; touch-action: none; }
 .scratch-card__foil:active { cursor: grabbing; }
 .scratch-card--revealed .scratch-card__message { animation: scratch-message-reveal .6s .15s ease both; }
@@ -243,10 +243,12 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 680px) {
   .invitation-message, .scratch-section { padding-top: 78px; padding-bottom: 78px; }
   .invitation-message > p:not(.eyebrow) { font-size: 12px; }
-  .scratch-card { width: min(350px, 100%); margin-top: 35px; }
-  .scratch-card__message { inset: 24% 13% 19%; gap: 4px; }
-  .scratch-card__message strong { font-size: 13px; }
-  .scratch-card__message > span:not(.scratch-card__label) { font-size: 9px; }
+  .scratch-card { width: min(380px, 100%); margin-top: 35px; }
+  .scratch-card__message { inset: 23% 11% 17%; gap: 3px; }
+  .scratch-card__label { font-size: 11px; }
+  .scratch-card__message strong { font-size: 19px; }
+  .scratch-card__message > span:not(.scratch-card__label) { font-size: 14px; }
+  .scratch-card__message > span[lang="ne"] { font-size: 14.5px; }
   .schedule { grid-template-columns: 1fr; gap: 28px; }
   .schedule__intro { position: static; }
   .schedule__item { grid-template-columns: 25px minmax(0, 1fr); gap: 10px; padding: 20px 0; }
@@ -443,12 +445,13 @@ a { color: inherit; text-decoration: none; }
 .traditional-invitation__card .traditional-invitation__family h3 { margin: 0 0 6px; font-size: clamp(15px, 2.1vw, 17px); }
 .traditional-invitation__card .traditional-invitation__family > p:not(.traditional-invitation__role):not(.traditional-invitation__relation) { margin: 2px 0; font-size: 12px; line-height: 1.75; }
 .traditional-invitation__card .traditional-invitation__family .traditional-invitation__address { margin-top: 6px !important; }
+.traditional-invitation__card .traditional-invitation__family .traditional-invitation__recipient { margin: 10px 0 0 !important; color: #71343a; font: 500 13px/1.75 var(--nepali-serif) !important; }
 .traditional-invitation__card .traditional-invitation__joining-mark { gap: 7px; }
 .traditional-invitation__card .traditional-invitation__joining-mark i { min-height: 22px; }
-.traditional-invitation__card .traditional-invitation__event { margin-top: 5%; padding-top: 0; }
-.traditional-invitation__card .traditional-invitation__divider { margin-bottom: 4px; font-size: 14px; }
-.traditional-invitation__card .traditional-invitation__event h3 { margin-bottom: 2px; font-size: 15px; }
-.traditional-invitation__card .traditional-invitation__detail-label { font-size: 11px; }
+.traditional-invitation__card .traditional-invitation__event { margin-top: calc(5% + 24px); padding-top: 0; }
+.traditional-invitation__card .traditional-invitation__divider { margin-bottom: 14px; font-size: 14px; }
+.traditional-invitation__card .traditional-invitation__event h3 { margin-bottom: 8px; font-size: 15px; }
+.traditional-invitation__card .traditional-invitation__detail-label { margin-bottom: 2px; font-size: 11px; }
 .traditional-invitation__card .traditional-invitation__date { font-size: clamp(14px, 2vw, 16px); }
 .traditional-invitation__card .traditional-invitation__schedule { width: min(420px, 82%); gap: 10px; margin: 10px auto 12px; }
 .traditional-invitation__card .traditional-invitation__schedule p { padding: 7px 8px; background: #fbf8f1; }
@@ -575,7 +578,7 @@ body { background: #fff; }
 .schedule__date { padding: 10px 18px; border: 1px solid #d2a85f; border-radius: 999px; background: linear-gradient(135deg, #8a2338, #5e1427); box-shadow: 0 10px 22px #5e142726; color: #f6e2b8; }
 .schedule__list { gap: 18px; }
 .schedule__list::before { width: 2px; background: linear-gradient(180deg, #d2a85f00, #d2a85f 12%, #b8223f 50%, #d2a85f 88%, #d2a85f00); }
-.schedule__item, .schedule__item:last-child { position: relative; min-height: 112px; grid-template-columns: 52px minmax(0, 1fr); gap: 18px; padding: 22px 64px 22px 22px; border: 1px solid transparent; border-radius: 18px; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #ecd7b2, #f6ebda 40%, #d9b475) border-box; box-shadow: 0 14px 34px #5e14270f, 0 2px 6px #5e14270a; }
+.schedule__item, .schedule__item:last-child { position: relative; min-height: 112px; grid-template-columns: 52px minmax(0, 1fr); gap: 18px; padding: 22px; border: 1px solid transparent; border-radius: 18px; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #ecd7b2, #f6ebda 40%, #d9b475) border-box; box-shadow: 0 14px 34px #5e14270f, 0 2px 6px #5e14270a; }
 .schedule__item:hover { border-color: transparent; box-shadow: 0 20px 40px #5e14271a, 0 2px 6px #5e14270d; transform: translateY(-3px); }
 .schedule__item::before { width: 13px; height: 13px; border: 3px solid #fff; background: #b8223f; box-shadow: 0 0 0 1.5px #d2a85f, 0 0 0 0 #b8223f55; animation: timeline-pulse 2.6s ease-in-out infinite; }
 .schedule__item:nth-child(2)::before { animation-delay: .5s; }
@@ -589,7 +592,7 @@ body { background: #fff; }
 .schedule__event p { color: #8a7564; }
 @keyframes timeline-pulse { 0%, 100% { box-shadow: 0 0 0 1.5px #d2a85f, 0 0 0 0 #b8223f44; } 50% { box-shadow: 0 0 0 1.5px #d2a85f, 0 0 0 7px #b8223f00; } }
 @media (max-width: 680px) {
-  .schedule__item, .schedule__item:last-child { grid-template-columns: 44px minmax(0, 1fr); gap: 13px; padding: 18px 46px 18px 16px; border-radius: 16px; }
+  .schedule__item, .schedule__item:last-child { grid-template-columns: 44px minmax(0, 1fr); gap: 13px; padding: 18px 16px; border-radius: 16px; }
   .schedule__icon { width: 44px; height: 44px; }
   .schedule__icon svg { width: 21px; height: 21px; }
   .schedule__index, .schedule__item .schedule__index { top: 8px; right: 12px; font-size: 34px; }
