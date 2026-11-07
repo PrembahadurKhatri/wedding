@@ -10,7 +10,7 @@ const PORTRAIT_QUERY = "(orientation: portrait)";
 // `rate` > 1 plays the clip a little faster than recorded.
 type Clip = { src: string; revealAt: number | null; rate: number };
 const clips: Record<"portrait" | "landscape", Clip> = {
-  portrait: { src: "/open-mobile.mp4", revealAt: 3.2, rate: 1.1 },
+  portrait: { src: "/dd.mp4", revealAt: 3.2, rate: 1.1 },
   landscape: { src: "/open-desktop.mp4", revealAt: 2.35, rate: 1.3 },
 };
 const FADE_MS = 450;
@@ -82,7 +82,7 @@ export default function InvitationCover() {
     >
       <div className="invitation-cover__frame">
         <picture>
-          <source media={PORTRAIT_QUERY} srcSet="/images/open-mobile-poster.webp" />
+          <source media={PORTRAIT_QUERY} srcSet="/images/dd-poster.webp" />
           <img
             alt=""
             className="invitation-cover__poster"
