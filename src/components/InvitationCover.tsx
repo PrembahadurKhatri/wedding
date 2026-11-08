@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
 // Opening envelope video. Portrait clip on phones / portrait tablets, landscape (cropped) clip on laptops.
-// Both clips end on a white flash, so each reveals at `revealAt` (the moment the flash fills the frame).
-// Mobile uses dd.mp4 unchanged (480×854), shown whole and fitted to the screen.
+// The landscape clip reveals at `revealAt` (the moment its white flash fills the frame).
+// Mobile uses openmobile.mp4 unchanged (480×854, 2.08 s), shown whole and fitted to the screen; it ends on a
+// bright glow rather than a full flash, so it plays through and reveals on "ended" (revealAt: null).
 const PORTRAIT_QUERY = "(orientation: portrait)";
 // `rate` > 1 plays the clip a little faster than recorded.
 type Clip = { src: string; revealAt: number | null; rate: number };
 const clips: Record<"portrait" | "landscape", Clip> = {
-  portrait: { src: "/dd.mp4", revealAt: 3.2, rate: 1.1 },
+  portrait: { src: "/openmobile.mp4", revealAt: null, rate: 1 },
   landscape: { src: "/open-desktop.mp4", revealAt: 2.35, rate: 1.3 },
 };
 const FADE_MS = 450;
@@ -82,7 +83,7 @@ export default function InvitationCover() {
     >
       <div className="invitation-cover__frame">
         <picture>
-          <source media={PORTRAIT_QUERY} srcSet="/images/dd-poster.webp" />
+          <source media={PORTRAIT_QUERY} srcSet="/images/openmobile-poster.webp" />
           <img
             alt=""
             className="invitation-cover__poster"
@@ -107,8 +108,9 @@ export default function InvitationCover() {
           preload="auto"
           ref={videoRef}
         />
-        {/* The clip's own "TAP TO OPEN" is only a few pixels tall at source and looks blurry, so a crisp
-            label is drawn over it (on a paper-coloured patch) and fades out as the sparks begin. */}
+        {/* Landscape only: that clip's own "TAP TO OPEN" is only a few pixels tall at source and looks blurry,
+            so a crisp label is drawn over it (on a paper-coloured patch) and fades out as the sparks begin.
+            Hidden in portrait, where openmobile.mp4 prints its own sharp label. */}
         <span className="invitation-cover__label" aria-hidden="true">
           <span>Tap to Open</span>
         </span>

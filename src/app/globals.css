@@ -722,7 +722,7 @@ body:has(.invitation-cover) { overflow: hidden; }
 @media (orientation: portrait) {
   .invitation-cover { background: #030202; }
   .invitation-cover__frame { width: min(100vw, 100dvh * 480 / 854); aspect-ratio: 480 / 854; }
-  .invitation-cover__button { top: 50.3%; left: 50%; width: 27%; }
+  .invitation-cover__button { top: 51.9%; left: 50%; width: 44%; }
 }
 /* Laptops / landscape: cropped envelope clip (480×300) centred on its own dark backdrop. */
 @media (orientation: landscape) {
@@ -740,9 +740,9 @@ body:has(.invitation-cover) { overflow: hidden; }
 .invitation-cover__label { position: absolute; display: grid; place-items: center; pointer-events: none; --feather: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%), linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%); -webkit-mask-image: var(--feather); -webkit-mask-composite: source-in; mask-image: var(--feather); mask-composite: intersect; transition: opacity .55s ease .1s; }
 .invitation-cover__label span { color: #7d5f36; font-family: var(--serif); font-weight: 500; line-height: 1; letter-spacing: .07em; text-transform: uppercase; text-shadow: 0 .05em 0 #fbf4e8cc, 0 -.03em .02em #4a32161f; white-space: nowrap; }
 .invitation-cover--playing .invitation-cover__label, .invitation-cover--revealing .invitation-cover__label { opacity: 0; }
+/* Portrait clip (openmobile.mp4) prints its own large, sharp "TAP TO OPEN", so no overlay there. */
 @media (orientation: portrait) {
-  .invitation-cover__label { top: 37.1%; left: 33.1%; width: 33.8%; height: 2.9%; background: #e3d8c7; }
-  .invitation-cover__label span { font-size: 3.6cqw; font-weight: 600; }
+  .invitation-cover__label { display: none; }
 }
 @media (orientation: landscape) {
   .invitation-cover__label { top: 29.8%; left: 38%; width: 24%; height: 6.6%; background: #dccfc1; }
